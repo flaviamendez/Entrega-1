@@ -1,113 +1,125 @@
 package dominio;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Mates {
 
-    // Suma de los números de 0 a n
+    //Ejercicio 1
     public static int suma(int n) {
-        int resultado = 0;
-        for (int i = 0; i <= n; i++) {
-            resultado += i;
+        int resultado = 0;  
+        for (int i = 0; i <= n; i++) {  
+            resultado += i;  
         }
-        return resultado;
+        return resultado;  
     }
 
-    // Factorial de un número
+    //Ejercicio 2
     public static int calcularFactorial(int n) {
-        int f = 1;
-        for (int i = 1; i <= n; i++) {
-            f *= i;
+        int f = 1;  // Inicializamos el factorial a 1
+        for (int i = 1; i <= n; i++) {  // Recorremos desde 1 hasta n
+            f *= i;  // Multiplicamos f por cada valor de i
         }
-        return f;
+        return f;  // Devolvemos el resultado del factorial
     }
 
-    // Potencia de un número
-    public static int calcularPotencia(int base, int exponente) {
-        int resultado = 1;
-        for (int i = 0; i < exponente; i++) {
-            resultado *= base;
+    //Ejercicio 3
+    public static int calcularPotencia (int base, int exponente) {
+        int resultado = 1;  
+        for (int i = 1; i <= exponente ; i++) {  
+            resultado *= base;  
         }
-        return resultado;
+        return resultado;  
     }
 
-    // Suma de los elementos de una lista
-    public static int calcularSumaElementosLista(int[] lista) {
-        int resultado = 0;
-        for (int num : lista) {
-            resultado += num;
+    //Ejercicio 4
+    public static int calcularSumaElementosLista (int[] lista) {
+        int resultado = 0;  
+        for (int i = 0; i<lista.length; i++) {  
+            resultado += lista[i] ;  
         }
-        return resultado;
+        return resultado;  
     }
 
-    // Media aritmética de una lista
-    public static double calcularMediaAritmetica(int[] lista) {
-        if (lista.length == 0) return 0;
-        int suma = calcularSumaElementosLista(lista);
-        return (double) suma / lista.length;
+    //Ejercicio 5
+    public static double calcularMediaAritmetica (int[] lista) {
+        int resultado = 0;  
+        for (int i = 0; i<lista.length; i++) {  
+            resultado += lista[i];
+        }
+        return (double) resultado/lista.length;  
     }
 
-    // Desviación típica de una lista.
-    public static double calcularDesviacionTipica(int[] lista) {
-        if (lista.length == 0) return 0;
-        double media = calcularMediaAritmetica(lista);
+    //Ejercicio 6
+    public static double calcularDesviacionTipica (int[] lista) {
+        //Paso 1: Calcular la media
+        double suma = 0;  
+        for (int i = 0; i<lista.length; i++) {  
+            suma += lista[i];
+        }
+        double media = suma/lista.length; 
+
+        //Paso 2: Calcular la suma de los cuadrados de las desviaciones
         double sumaCuadrados = 0;
-        for (int num : lista) {
-            sumaCuadrados += Math.pow(num - media, 2);
+        for(int i = 0; i<lista.length; i++) {
+            sumaCuadrados += Math.pow(lista[i]-media,2);
         }
-        return Math.sqrt(sumaCuadrados / lista.length);
+        
+        //Paso 3: Calcular la varianza
+        double varianza = sumaCuadrados/lista.length;
+
+        //Paso 4: Calcular la desviación típica
+        return Math.sqrt(varianza);
     }
 
-    // Suma de los primeros números pares hasta n
-    public static int calcularSumaPares(int n) {
+    //Ejercicio 7
+    public static int calcularSumaPares (int n) {
+        int resultado = 0;  
+        for (int i = n - 1; i>=2; i--) { 
+            if(i%2 == 0) {
+                resultado += i;
+            } 
+        }
+        return resultado;  
+    }
+
+    //Ejercicio 8
+    public static int calcularSumaElementosParesLista (int[] lista) {
+        int resultado = 0;  
+        for (int i = 0; i<lista.length; i++) {  
+            if(lista[i]%2 == 0)
+            resultado += lista[i] ;  
+        }
+        return resultado;  
+    }
+
+    //Ejercicio 9
+    public static ArrayList<Integer> obtenerListaPares(int[] lista){
+        ArrayList<Integer> listaPares = new ArrayList<>();  
+        for (int i = 0; i<lista.length; i++) {  
+            if(lista[i]%2 == 0)
+            listaPares.add(lista[i]);  
+        }
+        return listaPares;  
+    }
+
+    //Ejercicio 10
+    public static ArrayList<Integer> obtenerListaParesHastaN (int n) {
+        ArrayList<Integer> listaPares = new ArrayList<>(); 
+        for (int i = n - 1; i>=2; i--) { 
+            if(i%2 == 0) {
+                listaPares.add(i);
+            } 
+        }
+        return listaPares;  
+    }
+
+    //Ejercicio 11
+    public static int calcularProductoEscalar (int[] lista1, int[] lista2) {
         int resultado = 0;
-        for (int i = 2; i <= n; i += 2) {
-            resultado += i;
-        }
-        return resultado;
-    }
-
-    // Suma de los elementos pares de una lista.
-    public static int calcularSumaElementosParesLista(int[] lista) {
-        int resultado = 0;
-        for (int num : lista) {
-            if (num % 2 == 0) {
-                resultado += num;
-            }
-        }
-        return resultado;
-    }
-
-    //Corrección: Lista de números pares hasta n (orden ascendente)
-    public static int[] calcularListaPar(int n) {
-        int[] resultado = new int[n / 2];
-        int index = 0;
-        for (int i = 2; i <= n; i++) {
-            if (i % 2 == 0) {
-                resultado[index++] = i;
-            }
-        }
-        return resultado;
-    }
-
-    // Producto escalar de dos listas
-    public static int calcularProductoEscalarLista(int[] lista1, int[] lista2) {
-        if (lista1.length != lista2.length) {
-            throw new IllegalArgumentException("Las listas deben tener el mismo tamaño");
-        }
-        int resultado = 0;
-        for (int i = 0; i < lista1.length; i++) {
+        for (int i = 0; i<lista1.length; i++) { 
             resultado += lista1[i] * lista2[i];
         }
         return resultado;
     }
-
-    //Producto escalar de dos listas de números no vacías y del mismo tamaño.
-    public static int calcularProductoEscalarNoVacio(int[] lista1, int[] lista2) {
-        if (lista1.length == 0 || lista2.length == 0) {
-            throw new IllegalArgumentException("Las listas no deben estar vacías");
-        }
-        return calcularProductoEscalarLista(lista1, lista2);
-    }
+    
 }
